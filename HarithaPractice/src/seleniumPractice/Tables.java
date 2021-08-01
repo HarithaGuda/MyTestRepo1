@@ -13,6 +13,7 @@ public class Tables {
 
 	public static void main(String[] args) 
 	{
+		//launching browser
 		System.setProperty("webdriver.chrome.driver","C:\\Users\\user\\Desktop\\chromedriver.exe");
 		WebDriver driver = new ChromeDriver();
 		HashMap<String, String>trainer=new HashMap<String, String>();
@@ -23,14 +24,9 @@ public class Tables {
 			String type=ele.getAttribute("innerHTML");
 			String trainerName=ele.findElement(By.xpath("./following-sibling::td[2]")).getAttribute("innerHTML");
 			if(trainer.containsKey(trainerName))
-			{
-				String value=trainer.get(trainerName)+","+type;
-				trainer.put(trainerName, value);
-			}
+				trainer.put(trainerName, trainer.get(trainerName)+","+type);
 			else
-			{
 				trainer.put(trainerName, type);
-			}
 		}
 		System.out.println(trainer);
 		driver.quit();
